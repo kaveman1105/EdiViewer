@@ -17,7 +17,7 @@ export class PDFViewService {
 
 
     upload(fileContent: string): Observable<string> {
-        console.log('in upload');
+
         let body: string = fileContent;
         let headers = new Headers({ 'Content-Type': 'text/plain' });
         let options = new RequestOptions({ headers: headers });

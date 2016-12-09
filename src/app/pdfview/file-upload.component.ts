@@ -18,9 +18,7 @@ export class FileUploadComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 
   fileChangeListener($event: any): void {
     let self = this;

@@ -1,11 +1,7 @@
 
-<p>
-  file-upload works!
-</p>
 <input type="file" (change)="fileChangeListener($event);"/>
 
 <div *ngIf="fileLoaded" class="my-icon" aria-label="My Icon" >
-  <p>pdf here</p>
   <div [outerHTML]="xmlData">
   </div>
   
