@@ -1,9 +1,29 @@
+<input type="file" (change)="fileChangeListener($event);" />
 
-<input type="file" (change)="fileChangeListener($event);"/>
+<div class="ui divider"></div>
+<div *ngIf="!fileLoaded" class="my-icon" aria-label="My Icon">
 
-<div *ngIf="fileLoaded" class="my-icon" aria-label="My Icon" >
-  <div [outerHTML]="xmlData">
+  <div class="ui positive message" *ngIf="fileShell.fileContents == fileShell.returnContents">
+    <div class="header">
+      Congrats! the contents Match
+    </div>
   </div>
-  
-</div>
+  <div class="ui negative message" *ngIf="fileShell.fileContents != fileShell.returnContents">
+    <div class="header">
+      Something went wrong here :(
+    </div>
+  </div>
 
+  <h2 class="ui header">Loaded Contents</h2>
+  <div class="ui form">
+    <div class="field">
+      <textarea>{{fileShell.fileContents}}</textarea>
+    </div>
+  </div>
+   <h2 class="ui header">Returned Contents</h2>
+  <div class="ui form">
+    <div class="field">
+      <textarea>{{fileShell.returnedContents}}</textarea>
+    </div>
+  </div>
+</div>

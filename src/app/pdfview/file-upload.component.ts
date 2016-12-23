@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PDFViewService } from './pdfview.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { FileShell } from './fileShell';
 
 @Component({
   selector: 'app-file-upload',
@@ -11,26 +11,31 @@ export class FileUploadComponent implements OnInit {
 
   private svgContents: string;
   private fileLoaded: boolean = false;
-  private xmlData: SafeHtml;
+  private fileShell: FileShell;
 
   constructor(
     private pdfViewService: PDFViewService,
-    private sanitizer: DomSanitizer
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { 
+    this.fileShell = new FileShell();
+  }
 
   fileChangeListener($event: any): void {
     let self = this;
     let file: File = $event.target.files[0];
     let reader: FileReader = new FileReader();
     reader.readAsText(file);
+    this.fileShell.fileName = file.name;
     reader.onloadend = function (e) {
+
+      self.fileShell.fileContents = reader.result;
       self.pdfViewService.upload(reader.result)
         .subscribe(
         body => {
-          self.extractSVG(body);
-          self.setSvg();
+          self.fileShell.returnContents = body;
+          //self.extractSVG(body);
+          //self.setSvg();
         },
         error => console.log('Error: ' + error)
         );
@@ -39,7 +44,7 @@ export class FileUploadComponent implements OnInit {
 
   setSvg(): void {
     this.fileLoaded = true;
-    this.xmlData = this.sanitizer.bypassSecurityTrustHtml(this.svgContents);
+
   }
 
   extractSVG(body: string) {
