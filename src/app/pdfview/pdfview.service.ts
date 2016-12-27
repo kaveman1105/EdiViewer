@@ -10,7 +10,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class PDFViewService {
 
-    private url: string = 'http://formviewerpoc20161114023307.azurewebsites.net/api/upload';
+    private url: string = 'https://formviewerpoc20161114023307.azurewebsites.net/api/upload';
     constructor(
         private http: Http
     ) { }

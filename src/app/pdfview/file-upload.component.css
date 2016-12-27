@@ -1,1 +1,37 @@
 .file-over { border: dotted 3px red; }
+
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+    top:20px;
+    left: 3px;
+    background: lightblue;
+    padding:17px;
+    border-radius: 8px;
+}
+
+.fileContainer [type=file] {
+    cursor: inherit;
+    display: block;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+#dropZone{
+    width: 100%;
+    height: 300px;
+    border: dashed 5px lightblue
+}
+
+.hover{
+    background: #9ecaed;
+    border: 2px solid #dadada;
+    border-radius: 7px;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}

@@ -17,7 +17,7 @@ export class FileUploadComponent implements OnInit {
     private pdfViewService: PDFViewService,
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.fileShell = new FileShell();
   }
 
@@ -34,6 +34,7 @@ export class FileUploadComponent implements OnInit {
         .subscribe(
         body => {
           self.fileShell.returnContents = body;
+          self.fileLoaded = true;
           //self.extractSVG(body);
           //self.setSvg();
         },
@@ -49,6 +50,10 @@ export class FileUploadComponent implements OnInit {
 
   extractSVG(body: string) {
     this.svgContents = this.pdfViewService.extractSVG(body);
+  }
+
+  fileDrop($event) {
+    console.log($event);
   }
 
 }

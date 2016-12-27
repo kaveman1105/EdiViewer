@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import { PDFViewModule} from './pdfview/pdfview.module';
+import { PDFViewModule } from './pdfview/pdfview.module';
 
 
 
