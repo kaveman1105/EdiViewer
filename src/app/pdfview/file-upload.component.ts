@@ -11,6 +11,7 @@ export class FileUploadComponent implements OnInit {
 
   private svgContents: string;
   private fileLoaded: boolean = false;
+  private isdirty: boolean = false;
   private fileShell: FileShell;
 
   constructor(
@@ -22,8 +23,28 @@ export class FileUploadComponent implements OnInit {
   }
 
   fileChangeListener($event: any): void {
+
+    this.callWebService($event.target.files);
+  }
+
+  setSvg(): void {
+    this.fileLoaded = true;
+
+  }
+
+  extractSVG(body: string) {
+    this.svgContents = this.pdfViewService.extractSVG(body);
+  }
+
+  fileDrop($event) {
+    this.callWebService($event);
+  }
+
+  callWebService(files: FileList) {
+    this.isdirty = true;
+    this.fileLoaded = false;
     let self = this;
-    let file: File = $event.target.files[0];
+    let file: File = files[0];
     let reader: FileReader = new FileReader();
     reader.readAsText(file);
     this.fileShell.fileName = file.name;
@@ -41,19 +62,6 @@ export class FileUploadComponent implements OnInit {
         error => console.log('Error: ' + error)
         );
     };
-  }
-
-  setSvg(): void {
-    this.fileLoaded = true;
-
-  }
-
-  extractSVG(body: string) {
-    this.svgContents = this.pdfViewService.extractSVG(body);
-  }
-
-  fileDrop($event) {
-    console.log($event);
   }
 
 }

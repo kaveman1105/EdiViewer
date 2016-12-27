@@ -6,6 +6,8 @@
 </div>
 
 <div class="ui divider"></div>
+<div class="ui active centered inline loader" *ngIf="isdirty && !fileLoaded"></div>
+
 <div *ngIf="fileLoaded" class="my-icon" aria-label="My Icon">
   <h1 class="ui header">{{fileShell.fileName}}</h1>
   <div class="ui positive message" *ngIf="fileShell.fileContents == fileShell.returnContents">

@@ -19,13 +19,17 @@ export class DndDirective {
         $event.preventDefault();
         console.log($event);
     }
+    @HostListener('dragover', ['$event']) onDragOver($event) {
+        $event.preventDefault();
+    }
 
     @HostListener('dragend', ['$event']) onDragEnd($event) {
+        $event.preventDefault();
         console.log($event);
     }
-    // @HostListener('dragover', ['$event']) onDragOver($event) {
-    // }
+
     @HostListener('dragenter', ['$event']) onDragEnter($event) {
+
         this.hover = true;
     }
     @HostListener('dragleave', ['$event']) onDragExit($event) {
@@ -33,8 +37,8 @@ export class DndDirective {
     }
 
     @HostListener('drop', ['$event']) onDrop($event) {
-        console.log('drop');
-        console.log($event);
+        $event.preventDefault();
+        this.hover = false;
         this.fileDrop.emit($event.dataTransfer.files);
     }
 
