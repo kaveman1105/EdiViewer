@@ -7,7 +7,11 @@
 
 <div class="ui divider"></div>
 <div class="ui active centered inline loader" *ngIf="isdirty && !fileLoaded"></div>
-
+<div class="ui negative message" *ngIf="error.length > 0">
+    <div class="header">
+      {{error}}
+    </div>
+  </div>
 <div *ngIf="fileLoaded" class="my-icon" aria-label="My Icon">
   <h1 class="ui header">{{fileShell.fileName}}</h1>
   <div class="ui positive message" *ngIf="fileShell.fileContents == fileShell.returnContents">
@@ -20,6 +24,7 @@
       Something went wrong here :(
     </div>
   </div>
+  
 
   <h2 class="ui header">Loaded Contents</h2>
   <div class="ui form">

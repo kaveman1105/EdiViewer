@@ -17,7 +17,7 @@ export class DndDirective {
 
     @HostListener('dragstart', ['$event']) onDragStart($event) {
         $event.preventDefault();
-        console.log($event);
+
     }
     @HostListener('dragover', ['$event']) onDragOver($event) {
         $event.preventDefault();
@@ -25,7 +25,7 @@ export class DndDirective {
 
     @HostListener('dragend', ['$event']) onDragEnd($event) {
         $event.preventDefault();
-        console.log($event);
+
     }
 
     @HostListener('dragenter', ['$event']) onDragEnter($event) {

@@ -13,6 +13,7 @@ export class FileUploadComponent implements OnInit {
   private fileLoaded: boolean = false;
   private isdirty: boolean = false;
   private fileShell: FileShell;
+  private error: string = '';
 
   constructor(
     private pdfViewService: PDFViewService,
@@ -41,6 +42,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   callWebService(files: FileList) {
+    this.error = '';
     this.isdirty = true;
     this.fileLoaded = false;
     let self = this;
@@ -54,12 +56,20 @@ export class FileUploadComponent implements OnInit {
       self.pdfViewService.upload(reader.result)
         .subscribe(
         body => {
-          self.fileShell.returnContents = body;
+           //console.log(body);
+
+          self.fileShell.returnContents = '' + body;
           self.fileLoaded = true;
+          console.log(self.fileShell);
           //self.extractSVG(body);
           //self.setSvg();
         },
-        error => console.log('Error: ' + error)
+        error => {
+          console.log('Error: ' + error);
+          self.fileLoaded = false;
+          self.isdirty = false;
+          self.error = 'Error: ' + error;
+        }
         );
     };
   }
